@@ -2,6 +2,7 @@ import type { MessageResponse, UserLoginResponse } from '@/types/user'
 import axios, { type AxiosResponse } from 'axios'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
+console.log(BASE_URL)
 
 const userApi = axios.create({
   baseURL: BASE_URL,

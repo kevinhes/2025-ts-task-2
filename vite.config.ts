@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'esnext',
+    target: 'ES2022',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
