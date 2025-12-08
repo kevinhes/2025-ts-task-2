@@ -1,4 +1,4 @@
-import { fileURLToPath, resolve, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url'
 
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/2025-ts-task-2/' : '/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
@@ -14,14 +15,6 @@ export default defineConfig({
   },
   build: {
     target: 'ES2022',
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-      },
-      output: {
-        dir: resolve(__dirname, 'dist'),
-      },
-    },
   },
   css: {
     preprocessorOptions: {
