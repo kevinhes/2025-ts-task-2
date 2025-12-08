@@ -135,7 +135,7 @@ const deleteOrder = async (orderId: string) => {
               <span aria-hidden="true">&laquo;</span>
             </button>
           </li>
-          <li v-for="pageNum in pagination?.total_pages" class="page-item">
+          <li v-for="pageNum in pagination?.total_pages" class="page-item" :key="pageNum">
             <button
               @click="currentPage = pageNum.toString()"
               :disabled="currentPage === pageNum.toString()"

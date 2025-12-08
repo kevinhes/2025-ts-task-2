@@ -1,4 +1,5 @@
 import Dashboard from '@/components/Dashboard.vue'
+import FrontLayout from '@/components/front/FrontLayout.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
@@ -6,6 +7,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      component: FrontLayout,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('@/views/HomePage.vue'),
+        },
+      ],
+    },
+    {
+      path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
       children: [
