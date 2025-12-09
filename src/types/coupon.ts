@@ -14,6 +14,11 @@ export interface CouponData {
   num: number
 }
 
+export type EditCouponParams = {
+  id: string
+  data: Omit<CouponData, 'id' | 'num'>
+}
+
 export interface GetCouponResponse {
   // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean

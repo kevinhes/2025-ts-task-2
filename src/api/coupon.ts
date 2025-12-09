@@ -4,8 +4,10 @@ import type { AxiosResponse } from 'axios'
 import type {
   GetCouponResponse,
   CreateCouponParams,
+  EditCouponParams,
   CreateCouponResponse,
   DeleteCouponResponse,
+  EditCouponResponse,
 } from '@/types/coupon'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -54,6 +56,15 @@ export const apiCreateCoupon = (
   couponApi.post(`/v2/api/${API_PATH}/admin/coupon`, {
     data: params,
   })
+
+export const apiEditCoupon = (
+  params: EditCouponParams,
+): Promise<AxiosResponse<EditCouponResponse>> => {
+  const { data, id } = params
+  return couponApi.put(`/v2/api/${API_PATH}/admin/coupon/${id}`, {
+    data,
+  })
+}
 
 export const apiDeleteCoupon = (couponId: string): Promise<AxiosResponse<DeleteCouponResponse>> =>
   couponApi.delete(`/v2/api/${API_PATH}/admin/coupon/${couponId}`)

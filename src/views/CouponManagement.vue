@@ -144,13 +144,13 @@ const handleDeleteCoupon = async (couponId: string): Promise<void> => {
                 </div>
               </td>
               <td class="text-nowrap">
-                <!-- <button
+                <button
                   @click="openModal(coupon)"
                   type="button"
                   class="btn btn-sm btn-outline-dark rounded-lg me-2"
                 >
                   編輯
-                </button> -->
+                </button>
                 <button
                   @click="openDeleteModal(coupon.id)"
                   type="button"

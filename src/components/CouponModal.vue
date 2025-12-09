@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 // TODO: 匯入 API 函式
-import { apiCreateCoupon } from '@/api/coupon'
+import { apiCreateCoupon, apiEditCoupon } from '@/api/coupon'
 import { useCouponForm } from '@/composable/useCouponData'
 
 // TODO: 匯入型別定義
@@ -98,7 +98,7 @@ const saveCoupon = async () => {
 
   try {
     if (isEditMode.value && id) {
-      // await apiEditProduct({ data, id })
+      await apiEditCoupon({ data, id })
     } else {
       await apiCreateCoupon(data)
     }
