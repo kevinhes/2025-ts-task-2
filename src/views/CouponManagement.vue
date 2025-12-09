@@ -89,8 +89,8 @@ const openModal = (coupon: CouponData | null = null): void => {
  * Varialbe: 取得 deleteModal 的 DOM
  */
 const deleteModalRef = useTemplateRef<InstanceType<typeof DeleteModal>>('deleteModalRef')
-const openDeleteModal = (productId: string): void => {
-  deleteModalRef.value?.openModal(() => handleDeleteCoupon(productId))
+const openDeleteModal = (couponId: string): void => {
+  deleteModalRef.value?.openModal(() => handleDeleteCoupon(couponId))
 }
 const handleDeleteCoupon = async (couponId: string): Promise<void> => {
   try {

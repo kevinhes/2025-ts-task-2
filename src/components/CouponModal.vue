@@ -1,40 +1,42 @@
-<!-- 
-==========================================
-待辦事項
-==========================================
-
-到期輸入框看是不是能使用套件處理
-
--->
-
 <script setup lang="ts">
-// TODO: 匯入 API 函式
-import { apiCreateCoupon, apiEditCoupon } from '@/api/coupon'
-import { useCouponForm } from '@/composable/useCouponData'
-
-// TODO: 匯入型別定義
-import type { CouponData } from '@/types/coupon'
-import { Modal } from 'bootstrap'
-
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 import dayjs from 'dayjs'
+import { Modal } from 'bootstrap'
 
-// TODO: 定義 Props 介面
+import { apiCreateCoupon, apiEditCoupon } from '@/api/coupon'
+import { useCouponForm } from '@/composable/useCouponData'
+import type { CouponData } from '@/types/coupon'
+
+/** ------------------------------------------------------------------------------------
+ * Props: 定義 CouponModalProps 並用 ts 的方式引入
+ */
 interface CouponModalProps {
   coupon: CouponData
 }
 
-// TODO: 定義 props
-// 提示：使用 defineProps<ProductModalProps>()
 const { coupon } = defineProps<CouponModalProps>()
+
+/** ------------------------------------------------------------------------------------
+ * Emit: 設定 emit 呼叫父層的 getCoupons
+ */
 
 const emit = defineEmits(['get-coupons'])
 
-// TODO: 為模板引用加上型別註解
+/** ------------------------------------------------------------------------------------
+ * Variable:
+ * 1. 取得 DOM
+ * 2. 設定儲存 Modal 的變數
+ */
+
 const modalRef = useTemplateRef<HTMLElement>('modalRef')
 
-// TODO: 為 modal 變數加上型別註解
 let modal: Modal | null = null
+
+/** ------------------------------------------------------------------------------------
+ * Lifecyle:
+ * 1. onMounted 的時候抓取 modal DOM
+ * 2. onUnmounted 的時候銷毀 modal DOM
+ */
 
 onMounted(() => {
   if (modalRef.value) {
@@ -48,6 +50,12 @@ onUnmounted(() => {
   }
 })
 
+/** ------------------------------------------------------------------------------------
+ * Function:
+ * 1. openModal： 開啟 modal
+ * 2. closeModal 關閉 modal
+ */
+
 const openModal = () => {
   if (modal) {
     modal.show()
@@ -60,8 +68,32 @@ const closeModal = () => {
   }
 }
 
+/** ------------------------------------------------------------------------------------
+ * DefineExpose:
+ * 將 openModal 以及 closeModal 讓父層可以使用
+ */
+
+defineExpose({
+  openModal,
+  closeModal,
+})
+
+/** ------------------------------------------------------------------------------------
+ * Composable & Variable:
+ * 1. useCouponForm：取得表單資料、標題和載入優惠券方法
+ * 2. date：儲存日期選擇器的值（Date 物件）
+ */
+
 const { form, formTitle, loadCoupon } = useCouponForm()
 const date = ref<Date>(new Date())
+
+/** ------------------------------------------------------------------------------------
+ * Watch:
+ * 1. 監聽 coupon props 變化，載入優惠券資料並轉換日期格式
+ *    - 編輯模式：將 Unix timestamp 轉換為 Date 物件
+ *    - 新增模式：重置為當前日期
+ * 2. 監聽 date 變化，將 Date 物件轉換為 Unix timestamp 同步到 form
+ */
 
 watch(
   () => coupon,
@@ -83,9 +115,23 @@ watch(date, (newDate) => {
   }
 })
 
+/** ------------------------------------------------------------------------------------
+ * Computed & Variable:
+ * 1. isEditMode：判斷是否為編輯模式（根據 coupon.id 是否存在）
+ * 2. isLoading：儲存 API 請求的載入狀態
+ */
+
 const isEditMode = computed(() => Boolean(coupon.id))
 
 const isLoading = ref(false)
+
+/** ------------------------------------------------------------------------------------
+ * Function: saveCoupon
+ * 儲存優惠券（新增或編輯）
+ * 1. 將表單資料解構，分離 id 與其他資料
+ * 2. 根據 isEditMode 判斷呼叫新增或編輯 API
+ * 3. 成功後關閉彈窗並通知父層重新載入列表
+ */
 
 const saveCoupon = async () => {
   const { id, ...couponData } = form.value
@@ -112,12 +158,12 @@ const saveCoupon = async () => {
   }
 }
 
-defineExpose({
-  openModal,
-  closeModal,
-})
+/** ------------------------------------------------------------------------------------
+ * Computed: formattedDate
+ * 格式化日期顯示為「YYYY 年 MM 月 DD 日」格式
+ * 用於 input 輸入框的 readonly 顯示
+ */
 
-// 格式化日期用於顯示
 const formattedDate = computed(() => {
   return dayjs(date.value).format('YYYY 年 MM 月 DD 日')
 })
