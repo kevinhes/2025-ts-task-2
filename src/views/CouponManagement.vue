@@ -2,10 +2,11 @@
 import { onMounted, ref, useTemplateRef } from 'vue'
 import dayjs from 'dayjs'
 
-import { apiGetCoupons } from '@/api/coupon'
+import { apiGetCoupons, apiDeleteCoupon } from '@/api/coupon'
 import type { CouponData } from '@/types/coupon'
 import type { Pagination } from '@/types/product'
 import CouponModal from '@/components/CouponModal.vue'
+import DeleteModal from '@/components/DeleteModal.vue'
 
 const currentPage = ref<string>('1')
 const coupons = ref<CouponData[]>([])
@@ -83,6 +84,24 @@ const openModal = (coupon: CouponData | null = null): void => {
 
   couponModalRef.value?.openModal()
 }
+
+/** ----------------------------------------------------------------
+ * Varialbe: 取得 deleteModal 的 DOM
+ */
+const deleteModalRef = useTemplateRef<InstanceType<typeof DeleteModal>>('deleteModalRef')
+const openDeleteModal = (productId: string): void => {
+  deleteModalRef.value?.openModal(() => handleDeleteCoupon(productId))
+}
+const handleDeleteCoupon = async (couponId: string): Promise<void> => {
+  try {
+    await apiDeleteCoupon(couponId)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    alert('刪除商品失敗')
+  } finally {
+    getCoupons()
+  }
+}
 </script>
 <template>
   <div class="d-flex justify-content-end align-items-center mb-4">
@@ -131,14 +150,14 @@ const openModal = (coupon: CouponData | null = null): void => {
                   class="btn btn-sm btn-outline-dark rounded-lg me-2"
                 >
                   編輯
-                </button>
+                </button> -->
                 <button
                   @click="openDeleteModal(coupon.id)"
                   type="button"
                   class="btn btn-sm btn-outline-danger rounded-lg"
                 >
                   刪除
-                </button> -->
+                </button>
               </td>
             </tr>
           </tbody>
@@ -188,4 +207,5 @@ const openModal = (coupon: CouponData | null = null): void => {
   </div>
 
   <CouponModal ref="couponModalRef" :coupon="tempCoupon" @get-coupons="getCoupons" />
+  <DeleteModal ref="deleteModalRef" title="刪除優惠券" content="確定要刪除該優惠券嗎？" />
 </template>

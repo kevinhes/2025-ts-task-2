@@ -1,7 +1,12 @@
 import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 
-import type { GetCouponResponse, CreateCouponParams, CreateProductResponse } from '@/types/coupon'
+import type {
+  GetCouponResponse,
+  CreateCouponParams,
+  CreateCouponResponse,
+  DeleteCouponResponse,
+} from '@/types/coupon'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_PATH = import.meta.env.VITE_API_PATH
@@ -45,7 +50,10 @@ export const apiGetCoupons = (
 
 export const apiCreateCoupon = (
   params: CreateCouponParams,
-): Promise<AxiosResponse<CreateProductResponse>> =>
+): Promise<AxiosResponse<CreateCouponResponse>> =>
   couponApi.post(`/v2/api/${API_PATH}/admin/coupon`, {
     data: params,
   })
+
+export const apiDeleteCoupon = (couponId: string): Promise<AxiosResponse<DeleteCouponResponse>> =>
+  couponApi.delete(`/v2/api/${API_PATH}/admin/coupon/${couponId}`)

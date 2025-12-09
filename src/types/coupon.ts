@@ -24,6 +24,6 @@ export interface GetCouponResponse {
 
 export type CreateCouponParams = Omit<CouponData, 'id' | 'num'>
 
-export type CreateProductResponse = MessageResponse
-export type EditProductResponse = MessageResponse
-export type DeleteProductResponse = MessageResponse
+export type CreateCouponResponse = MessageResponse
+export type EditCouponResponse = MessageResponse
+export type DeleteCouponResponse = MessageResponse
