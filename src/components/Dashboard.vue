@@ -5,6 +5,10 @@ import Sidebar from '@/components/Sidebar.vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+defineOptions({
+  name: 'AdminDashboard',
+})
+
 const router = useRouter()
 
 const isSuccess = ref(false)
@@ -12,7 +16,7 @@ const isSuccess = ref(false)
 const checkLoginStatus = async () => {
   try {
     await apiCheckLoginStatus()
-  } catch (error) {
+  } catch {
     alert('請重新登入')
     router.push('/login')
   } finally {

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { sidebarData } from '@/constants'
+
+defineOptions({
+  name: 'SidebarNav',
+})
 </script>
 
 <template>
@@ -8,6 +12,7 @@ import { sidebarData } from '@/constants'
     <nav class="nav nav-pills flex-column">
       <RouterLink
         v-for="sidebarItem in sidebarData"
+        :key="sidebarItem.name"
         :to="sidebarItem.path"
         activeClass="active"
         class="nav-link"

@@ -15,7 +15,7 @@ TypeScript 練習題目 - 商品管理頁面
 <script setup lang="ts">
 // TODO: 匯入 API 函式
 // 提示：從 @/api/products 匯入 apiDeleteProduct, apiGetProducts
-import {apiDeleteProduct, apiGetProducts} from '@/api/products'
+import { apiDeleteProduct, apiGetProducts } from '@/api/products'
 
 import DeleteModal from '@/components/DeleteModal.vue'
 import ProductModal from '@/components/ProductModal.vue'
@@ -56,7 +56,7 @@ const getProducts = async () => {
     console.log(res)
     products.value = res.data.products
     pagination.value = res.data.pagination
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     alert('取得產品列表失敗')
   }
@@ -67,7 +67,7 @@ onMounted(() => {
 
 // TODO: 為 getInitialProductData 函式加上型別註解
 // 提示：這個函式不接受參數，回傳 ProductData 型別
-const getInitialProductData = ():ProductData => ({
+const getInitialProductData = (): ProductData => ({
   id: '',
   title: '',
   origin_price: 0,
@@ -88,7 +88,7 @@ const tempProduct = ref<ProductData>(getInitialProductData())
 
 // TODO: 為 openModal 函式加上型別註解
 // 提示：參數 product 的型別是 ProductData | null，預設值是 null，沒有回傳值
-const openModal = (product:ProductData | null = null):void => {
+const openModal = (product: ProductData | null = null): void => {
   if (product) {
     tempProduct.value = { ...product, imagesUrl: product.imagesUrl ? [...product.imagesUrl] : [''] }
   }
@@ -98,16 +98,16 @@ const openModal = (product:ProductData | null = null):void => {
 
 // TODO: 為 openDeleteModal 函式加上型別註解
 // 提示：參數 productId 是 string 型別，沒有回傳值
-const openDeleteModal = (productId:string):void => {
+const openDeleteModal = (productId: string): void => {
   deleteModalRef.value?.openModal(() => handleDeleteProduct(productId))
 }
 
 // TODO: 為 handleDeleteProduct 函式加上型別註解
 // 提示：這是一個 async 函式，參數 productId 是 string 型別，回傳 Promise<void>
-const handleDeleteProduct = async (productId:string): Promise<void> => {
+const handleDeleteProduct = async (productId: string): Promise<void> => {
   try {
     await apiDeleteProduct(productId)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     alert('刪除商品失敗')
   } finally {

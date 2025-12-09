@@ -74,7 +74,6 @@ export type Pagination = {
 // }
 export type CreateProductParams = Omit<ProductData, 'id' | 'num'>
 
-
 // TODO: 定義編輯商品參數型別
 // 提示：編輯商品需要 id 和 data 物件
 // export type EditProductParams= {
@@ -95,8 +94,8 @@ export type CreateProductParams = Omit<ProductData, 'id' | 'num'>
 // }
 
 export type EditProductParams = {
-  id:string
-  data:Omit<ProductData, 'id' | 'num'>
+  id: string
+  data: Omit<ProductData, 'id' | 'num'>
 }
 
 // TODO: 定義取得商品列表回應型別
@@ -105,7 +104,7 @@ export type EditProductParams = {
 // - products: 商品陣列 (ProductData[])
 // - pagination: 分頁資訊 (Pagination)
 // - messages: 訊息陣列 (未知型別陣列)
-export type GetProductsResponse= {
+export type GetProductsResponse = {
   // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean
   products: ProductData[]
@@ -115,7 +114,7 @@ export type GetProductsResponse= {
 
 // TODO: 定義訊息回應基本型別
 // 提示：包含 success (布林值) 和 message (字串)
-type MessageResponse= {
+export type MessageResponse = {
   // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean
   message: string
@@ -129,7 +128,7 @@ export type DeleteProductResponse = MessageResponse
 
 // TODO: 定義圖片上傳回應型別
 // 提示：包含 success (布林值) 和 imageUrl (字串)
-export type UploadImageResponse= {
+export type UploadImageResponse = {
   // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean
   imageUrl: string

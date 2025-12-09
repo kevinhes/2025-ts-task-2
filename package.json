@@ -17,11 +17,13 @@
     "generate": "npx openapi-typescript ./src/openapi/raw/ec-course.json -o ./src/openapi/types/ec-course.ts",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
-
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
+    "dayjs": "^1.11.19",
+    "v-calendar": "^3.1.2",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
