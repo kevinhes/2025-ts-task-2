@@ -15,14 +15,14 @@ TypeScript 練習題目 - 商品管理頁面
 <script setup lang="ts">
 // TODO: 匯入 API 函式
 // 提示：從 @/api/products 匯入 apiDeleteProduct, apiGetProducts
-import { apiDeleteProduct, apiGetProducts } from '@/api/products'
+import { apiDeleteProduct, apiGetProducts } from '@/api/admin/products'
 
-import DeleteModal from '@/components/DeleteModal.vue'
-import ProductModal from '@/components/ProductModal.vue'
+import DeleteModal from '@/components/admin/DeleteModal.vue'
+import ProductModal from '@/components/admin/ProductModal.vue'
 
 // TODO: 匯入型別定義
 // 提示：從 @/types/product 匯入 Pagination, ProductData
-import type { Pagination, ProductData } from '@/types/product'
+import type { Pagination, ProductData } from '@/types/admin/product'
 import { onMounted, ref, useTemplateRef } from 'vue'
 
 // TODO: 為模板引用加上型別註解

@@ -15,13 +15,13 @@ TypeScript 練習題目 - 商品彈窗組件
 <script setup lang="ts">
 // TODO: 匯入 API 函式
 // 提示：從 @/api/products 匯入 apiCreateProduct, apiEditProduct
-import { apiCreateProduct, apiEditProduct } from '@/api/products'
-import { useImageUpload } from '@/composable/useImageUpload'
-import { useProductForm } from '@/composable/useProductData'
+import { apiCreateProduct, apiEditProduct } from '@/api/admin/products'
+import { useImageUpload } from '@/composable/admin/useImageUpload'
+import { useProductForm } from '@/composable/admin/useProductData'
 
 // TODO: 匯入型別定義
 // 提示：從 @/types/product 匯入 ProductData
-import type {ProductData} from '@/types/product'
+import type { ProductData } from '@/types/admin/product'
 import { Modal } from 'bootstrap'
 
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
@@ -45,7 +45,7 @@ const modalRef = useTemplateRef<HTMLElement>('modalRef')
 
 // TODO: 為 modal 變數加上型別註解
 // 提示：型別是 Modal | null
-let modal:Modal | null = null
+let modal: Modal | null = null
 
 onMounted(() => {
   if (modalRef.value) {
@@ -127,7 +127,7 @@ const saveProduct = async () => {
     }
     resetImages([])
     closeModal()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     alert('新增/編輯產品失敗')
   } finally {

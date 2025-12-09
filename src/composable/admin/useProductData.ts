@@ -1,4 +1,4 @@
-import type { ProductData } from '@/types/product'
+import type { ProductData } from '@/types/admin/product'
 import { ref, type Ref } from 'vue'
 
 interface UseProductFormResult {

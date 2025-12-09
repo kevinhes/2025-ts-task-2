@@ -1,4 +1,4 @@
-import { apiUploadImage } from '@/api/products'
+import { apiUploadImage } from '@/api/admin/products'
 import { ref, type Ref } from 'vue'
 
 interface UseImageUploadResult {
@@ -20,7 +20,7 @@ function isValidUrl(url: string): boolean {
   try {
     const parsedUrl = new URL(url)
     return ['http:', 'https:'].includes(parsedUrl.protocol)
-  } catch (e) {
+  } catch {
     return false
   }
 }

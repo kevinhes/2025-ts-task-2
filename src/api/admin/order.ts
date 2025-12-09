@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios'
 
-import type { DeleteOrderResponse, GetOrdersResponse } from '@/types/order'
+import type { DeleteOrderResponse, GetOrdersResponse } from '@/types/admin/order'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_PATH = import.meta.env.VITE_API_PATH

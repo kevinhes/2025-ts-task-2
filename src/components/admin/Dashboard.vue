@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { apiCheckLoginStatus } from '@/api/user'
-import Header from '@/components/Header.vue'
-import Sidebar from '@/components/Sidebar.vue'
+import { apiCheckLoginStatus } from '@/api/admin/user'
+import Header from '@/components/admin/AdminHeader.vue'
+import Sidebar from '@/components/admin/Sidebar.vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 

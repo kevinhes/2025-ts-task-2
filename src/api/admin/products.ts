@@ -21,7 +21,7 @@ import type {
   EditProductResponse,
   DeleteProductResponse,
   UploadImageResponse,
-} from '@/types/product'
+} from '@/types/admin/product'
 import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 

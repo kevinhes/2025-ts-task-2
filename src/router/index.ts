@@ -1,4 +1,5 @@
-import Dashboard from '@/components/Dashboard.vue'
+import Dashboard from '@/components/admin/Dashboard.vue'
+import FrontLayout from '@/components/front/FrontLayout.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
@@ -6,33 +7,45 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'frontLayout',
+      component: FrontLayout,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('@/views/front/HomeView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
       children: [
         {
           path: '/product-management',
           name: 'product-management',
-          component: () => import('@/views/ProductManagement.vue'),
+          component: () => import('@/views/admin/ProductManagement.vue'),
         },
         {
           path: '/order-management',
           name: 'order-management',
-          component: () => import('@/views/OrderManagement.vue'),
+          component: () => import('@/views/admin/OrderManagement.vue'),
         },
         {
           path: '/coupon-management',
           name: 'coupon-management',
-          component: () => import('@/views/CouponManagement.vue'),
+          component: () => import('@/views/admin/CouponManagement.vue'),
         },
       ],
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/Login.vue'),
+      component: () => import('@/views/admin/AdminLogin.vue'),
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     }

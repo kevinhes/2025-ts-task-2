@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { apiDeleteOrder, apiGetOrders } from '@/api/order'
-import DeleteModal from '@/components/DeleteModal.vue'
-import OrderDetailModal from '@/components/OrderDetailModal.vue'
-import type { Order, Pagination } from '@/types/order'
+import { apiDeleteOrder, apiGetOrders } from '@/api/admin/order'
+import DeleteModal from '@/components/admin/DeleteModal.vue'
+import OrderDetailModal from '@/components/admin/OrderDetailModal.vue'
+import type { Order, Pagination } from '@/types/admin/order'
 import { onMounted, ref, useTemplateRef } from 'vue'
 
 const orderDetailModalRef = useTemplateRef('orderDetailModalRef')
@@ -44,7 +44,7 @@ const getOrders = async () => {
 
     orders.value = res.data.orders
     pagination.value = res.data.pagination
-  } catch (error) {
+  } catch {
     alert('取得訂單列表失敗')
   }
 }
@@ -64,7 +64,7 @@ const openDeleteModal = (orderId: string) => {
 const deleteOrder = async (orderId: string) => {
   try {
     await apiDeleteOrder(orderId)
-  } catch (error) {
+  } catch {
     alert('刪除訂單失敗')
   } finally {
     getOrders()

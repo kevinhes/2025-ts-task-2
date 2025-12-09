@@ -3,9 +3,9 @@ import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vu
 import dayjs from 'dayjs'
 import { Modal } from 'bootstrap'
 
-import { apiCreateCoupon, apiEditCoupon } from '@/api/coupon'
-import { useCouponForm } from '@/composable/useCouponData'
-import type { CouponData } from '@/types/coupon'
+import { apiCreateCoupon, apiEditCoupon } from '@/api/admin/coupon'
+import { useCouponForm } from '@/composable/admin/useCouponData'
+import type { CouponData } from '@/types/admin/coupon'
 
 /** ------------------------------------------------------------------------------------
  * Props: 定義 CouponModalProps 並用 ts 的方式引入

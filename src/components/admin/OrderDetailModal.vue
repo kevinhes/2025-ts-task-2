@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { GetOrdersResponse } from '@/types/order'
+import type { GetOrdersResponse } from '@/types/admin/order'
 import { Modal } from 'bootstrap'
 import { onMounted, onUnmounted, useTemplateRef } from 'vue'
 

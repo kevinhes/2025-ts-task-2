@@ -1,4 +1,4 @@
-import type { MessageResponse, UserLoginResponse } from '@/types/user'
+import type { MessageResponse, UserLoginResponse } from '@/types/admin/user'
 import axios, { type AxiosResponse } from 'axios'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL

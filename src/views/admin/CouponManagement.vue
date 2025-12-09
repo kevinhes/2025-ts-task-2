@@ -2,11 +2,11 @@
 import { onMounted, ref, useTemplateRef } from 'vue'
 import dayjs from 'dayjs'
 
-import { apiGetCoupons, apiDeleteCoupon } from '@/api/coupon'
-import type { CouponData } from '@/types/coupon'
-import type { Pagination } from '@/types/product'
-import CouponModal from '@/components/CouponModal.vue'
-import DeleteModal from '@/components/DeleteModal.vue'
+import { apiGetCoupons, apiDeleteCoupon } from '@/api/admin/coupon'
+import type { CouponData } from '@/types/admin/coupon'
+import type { Pagination } from '@/types/admin/product'
+import CouponModal from '@/components/admin/CouponModal.vue'
+import DeleteModal from '@/components/admin/DeleteModal.vue'
 
 const currentPage = ref<string>('1')
 const coupons = ref<CouponData[]>([])

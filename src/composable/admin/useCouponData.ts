@@ -1,4 +1,4 @@
-import type { CouponData } from '@/types/coupon'
+import type { CouponData } from '@/types/admin/coupon'
 import { ref, type Ref } from 'vue'
 
 interface UseCouponFormResult {

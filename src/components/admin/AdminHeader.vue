@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { apiUserLogout } from '@/api/user'
+import { apiUserLogout } from '@/api/admin/user'
 import { sidebarData } from '@/constants'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -34,7 +34,7 @@ const handleLogout = async () => {
   isProcessLogout.value = true
   try {
     await apiUserLogout()
-  } catch (error) {
+  } catch {
   } finally {
     isProcessLogout.value = true
     router.push('/login')
