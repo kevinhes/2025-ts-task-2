@@ -1,5 +1,9 @@
 import type { Pagination } from './utili'
 
+/** ------------------------------------------------------------
+ * Type: 商品型別
+ */
+
 export type ProductData = {
   category: string
   content: string
@@ -15,18 +19,31 @@ export type ProductData = {
   num: number
 }
 
+/** ------------------------------------------------------------
+ * Type: 取權全部商品後 api 回傳型別
+ */
+
 export type GetProductsResponse = {
-  // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean
   products: ProductData[]
   pagination: Pagination
   messages: MessageResponse
 }
 
-// TODO: 定義訊息回應基本型別
-// 提示：包含 success (布林值) 和 message (字串)
+/** ------------------------------------------------------------
+ * Type: api 回傳訊息型別
+ */
+
 export type MessageResponse = {
-  // 在這裡加上型別定義，將 unknown 替換為正確的型別
   success: boolean
   message: string
+}
+
+/** ------------------------------------------------------------
+ * Type: 商品 detail api 回傳型別
+ */
+
+export type GetProductDetailResponse = {
+  success: boolean
+  product: ProductData
 }

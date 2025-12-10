@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 
-import type { GetProductsResponse } from '@/types/front/product'
+import type { GetProductsResponse, GetProductDetailResponse } from '@/types/front/product'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_PATH = import.meta.env.VITE_API_PATH
@@ -29,3 +29,6 @@ export const apiGetProducts = (params: {
 
 export const apiGetAllProducts = (): Promise<AxiosResponse<GetProductsResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/products/all`)
+
+export const apiGetProductDetail = (id: string): Promise<AxiosResponse<GetProductDetailResponse>> =>
+  productApi.get(`/v2/api/${API_PATH}/product/${id}`)
