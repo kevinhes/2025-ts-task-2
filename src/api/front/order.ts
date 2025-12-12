@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios'
 
-import type { GetCouponResponse } from '@/types/front/order'
+import type { GetCouponResponse, AddOrderResponse, AddOrderParams } from '@/types/front/order'
 import createHttpClient from './http'
 
 const API_PATH = import.meta.env.VITE_API_PATH
@@ -20,3 +20,11 @@ export const apiApplyCoupon = (couponCode: string): Promise<AxiosResponse<GetCou
       code: couponCode,
     },
   })
+
+export const apiCreateOrder = (data: AddOrderParams): Promise<AxiosResponse<AddOrderResponse>> =>
+  orderApi.post(`/v2/api/${API_PATH}/order`, {
+    data,
+  })
+
+export const apiProcessPayment = (orderId: string) =>
+  orderApi.post(`/v2/api/${API_PATH}/pay/${orderId}`)

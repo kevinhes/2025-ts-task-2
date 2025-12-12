@@ -59,7 +59,7 @@ export const useCartStore = defineStore('cart', () => {
     } catch {
       alert('刪除購物車失敗')
     } finally {
-      isDeleting.value = true
+      isDeleting.value = false
     }
   }
   return {

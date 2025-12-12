@@ -55,7 +55,7 @@ onMounted(() => {
           <RouterLink class="d-md-none nav-item nav-link" to="/cart">購物車</RouterLink>
           <RouterLink class="d-none d-md-block nav-item nav-link" to="/cart"
             ><div className="position-relative">
-              <i className="fas fa-shopping-cart"></i>
+              <i class="fas fa-shopping-cart"></i>
               <span
                 class="position-absolute badge text-bg-dark rounded-circle"
                 style="bottom: 12px; left: 12px"

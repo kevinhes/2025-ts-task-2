@@ -30,6 +30,16 @@ const router = createRouter({
           name: 'cart',
           component: () => import('../views/front/CartView.vue'),
         },
+        {
+          path: '/checkout',
+          name: 'checkout',
+          component: () => import('../views/front/CheckoutView.vue'),
+        },
+        {
+          path: '/checkout-success',
+          name: 'checkout-success',
+          component: () => import('../views/front/CheckoutSuccessView.vue'),
+        },
       ],
     },
     {
