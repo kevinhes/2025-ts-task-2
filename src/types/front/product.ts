@@ -1,4 +1,4 @@
-import type { Pagination } from './utili'
+import type { Pagination } from './utils'
 
 /** ------------------------------------------------------------
  * Type: 商品型別

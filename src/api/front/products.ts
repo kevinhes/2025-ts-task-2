@@ -1,25 +1,22 @@
-import axios from 'axios'
 import type { AxiosResponse } from 'axios'
 
 import type { GetProductsResponse, GetProductDetailResponse } from '@/types/front/product'
+import createHttpClient from './http'
 
-const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_PATH = import.meta.env.VITE_API_PATH
 
-const productApi = axios.create({
-  baseURL: BASE_URL,
-})
+const productApi = createHttpClient()
 
-productApi.interceptors.response.use(
-  (response) => {
-    return Promise.resolve(response)
-  },
-  (error) => {
-    return Promise.reject(error.response.data)
-  },
-)
+/** ------------------------------------------------------------------------------------------------
+ * @function
+ * apiGetProducts
+ * @description
+ * 取得商品資料
+ * @returns
+ * 回傳商品資料
+ */
 
-export const apiGetProducts = (params: {
+export const apiGetProducts = (params?: {
   page?: string
   category?: string
 }): Promise<AxiosResponse<GetProductsResponse>> =>
@@ -27,8 +24,28 @@ export const apiGetProducts = (params: {
     params,
   })
 
+/** ------------------------------------------------------------------------------------------------
+ * @function
+ * apiGetAllProducts
+ * @description
+ * 取得所有商品資料（不分頁）
+ * @returns
+ * 回傳所有商品資料
+ */
+
 export const apiGetAllProducts = (): Promise<AxiosResponse<GetProductsResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/products/all`)
+
+/** ------------------------------------------------------------------------------------------------
+ * @function
+ * apiGetProductDetail
+ * @description
+ * 取得單一商品詳細資料
+ * @param
+ * id - 商品 ID
+ * @returns
+ * 回傳商品詳細資料
+ */
 
 export const apiGetProductDetail = (id: string): Promise<AxiosResponse<GetProductDetailResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/product/${id}`)

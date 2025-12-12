@@ -9,14 +9,14 @@ import Swiper from 'swiper'
 import { Autoplay } from 'swiper/modules'
 
 import { apiGetProductDetail, apiGetProducts } from '@/api/front/products'
-// import { useCartStore } from '@/stores/cartStore'
+import { useCartStore } from '@/stores/cartStore'
 import type { ProductData } from '@/types/front/product'
 
 const productNum = ref(1)
 
 const route = useRoute()
 
-// const cartStore = useCartStore()
+const cartStore = useCartStore()
 
 const productId = computed(() => route.params.id as string)
 
@@ -102,10 +102,10 @@ watch(
 )
 
 const handleAddCartItem = async () => {
-  // cartStore.addCartItem({
-  //   product_id: productId.value,
-  //   qty: productNum.value,
-  // })
+  cartStore.addCartItem({
+    product_id: productId.value,
+    qty: productNum.value,
+  })
 }
 </script>
 

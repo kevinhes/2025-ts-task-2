@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 
 import { apiGetProducts, apiGetAllProducts } from '@/api/front/products'
-import type { Pagination } from '@/types/front/utili'
+import type { Pagination } from '@/types/front/utils'
 import type { ProductData } from '@/types/front/product'
 
 const currentPage = ref('1')

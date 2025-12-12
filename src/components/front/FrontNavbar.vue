@@ -1,22 +1,16 @@
-<!-- 
-  待處理事項
-
-  購物車的 pinia 以及數量
--->
-
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-// import { useCartStore } from '@/stores/cartStore'
-// import { storeToRefs } from 'pinia'
-// import { onMounted } from 'vue'
+import { useCartStore } from '@/stores/cartStore'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
-// const cartStore = useCartStore()
+const cartStore = useCartStore()
 
-// const { cart } = storeToRefs(cartStore)
+const { cart } = storeToRefs(cartStore)
 
-// onMounted(() => {
-//   cartStore.getCart()
-// })
+onMounted(() => {
+  cartStore.getCart()
+})
 </script>
 
 <template>
@@ -62,15 +56,10 @@ import { RouterLink } from 'vue-router'
           <RouterLink class="d-none d-md-block nav-item nav-link" to="/cart"
             ><div className="position-relative">
               <i className="fas fa-shopping-cart"></i>
-              <!-- <span
-                class="position-absolute badge text-bg-dark rounded-circle"
-                style="bottom: 12px; left: 12px"
-                >{{ cart?.carts.length }}</span
-              > -->
               <span
                 class="position-absolute badge text-bg-dark rounded-circle"
                 style="bottom: 12px; left: 12px"
-                >3</span
+                >{{ cart?.carts.length }}</span
               >
             </div></RouterLink
           >
